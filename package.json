@@ -1,0 +1,29 @@
+{
+  "name": "@structure-js/datastructure",
+  "version": "1.0.0",
+  "description": "javascript data structures",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/structure-js/datastructure.git"
+  },
+  "keywords": [
+    "javascript",
+    "data structure",
+    "collections",
+    "library"
+  ],
+  "author": "structure-js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/structure-js/datastructure/issues"
+  },
+  "homepage": "https://github.com/structure-js/datastructure#readme",
+  "dependencies": "",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
