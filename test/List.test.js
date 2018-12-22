@@ -74,7 +74,7 @@ test('List[] size = 0', function() {
     expect(list.size()).toBe(0);
 })
 test('List[3,4,5,6,7] size = 5', function() {
-    var list =new List();
+    var list = new List();
     list.addHead(7);
     list.addHead(6);
     list.addHead(5);
@@ -83,7 +83,7 @@ test('List[3,4,5,6,7] size = 5', function() {
     expect(list.size()).toBe(5);
 })
 test('List[3,4,5,6,7] clear = []', function() {
-    var list =new List();
+    var list = new List();
     list.addHead(7);
     list.addHead(6);
     list.addHead(5);
@@ -91,4 +91,12 @@ test('List[3,4,5,6,7] clear = []', function() {
     list.addHead(3);
     list.clear();
     expect(list.isEmpty()).toBe(true);
+})
+test('List[] head = null', function() {
+    var list = new List();
+    expect(list.head()).toBe(null);
+})
+test('List[] tail = null', function() {
+    var list = new List();
+    expect(list.tail()).toBe(null);
 })
