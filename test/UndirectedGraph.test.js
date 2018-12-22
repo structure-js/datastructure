@@ -1,20 +1,20 @@
-// let UndirectedGraph = require('../lib/UndirectedGraph.js');
-// let Vertex = UndirectedGraph.Vertex;
+let UndirectedGraph = require('../lib/UndirectedGraph.js');
+let Vertex = UndirectedGraph.Vertex;
 
-// let graph = new UndirectedGraph();
+let graph = new UndirectedGraph();
 
-// let v1 = new Vertex('A');
-// let v2 = new Vertex('B');
-// let v3 = new Vertex('C');
-// let v4 = new Vertex('D');
-// let v5 = new Vertex('E');
-// let v6 = new Vertex('F');
-// let v7 = new Vertex('G');
+let v1 = new Vertex('A');
+let v2 = new Vertex('B');
+let v3 = new Vertex('C');
+let v4 = new Vertex('D');
+let v5 = new Vertex('E');
+let v6 = new Vertex('F');
+let v7 = new Vertex('G');
 
-// test('When construct new Graph,',()=>{
-//     expect(graph.vertexSize).toBe(0);
-//     expect(graph.edgeSize).toBe(0);
-// });
+test('When construct new Graph,',()=>{
+    expect(graph.vertexSize).toBe(0);
+    expect(graph.edgeSize).toBe(0);
+});
 
 // test('graph.addVertex(vertex)',()=>{
 //     graph.addVertex(v1);
