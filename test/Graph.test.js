@@ -85,22 +85,3 @@ test("graph.getPath(vs, ve)",()=>{
     expect(graph.getPath(v6,v1)).toEqual([]);
     expect(graph.getPath(v5,v1)).toEqual([]);
 });
-// for (vertex of graph.getVertexIterator()) {
-//     for (neighbor of vertex.getNeighborsIterator()) {
-//         console.log(vertex.getWeightTo(neighbor));
-//     }
-// }
-
-// // console.log(graph.getDistance(v1,v1));
-
-// for (let vertex1 of graph.getVertexIterator()) {
-//     for (let vertex2 of graph.getVertexIterator()) {
-//         let result = graph.dijkstra(vertex1, vertex2);
-//         process.stdout.write(vertex1.name + "->" + vertex2.name + "[" + result[0] + "] : ");
-//         result[1].forEach(element => {
-//             process.stdout.write(element.name + " ");
-//         });
-//         console.log();
-//     }
-//     console.log();
-// }
