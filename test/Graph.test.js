@@ -11,12 +11,12 @@ let v5 = new Vertex('E');
 let v6 = new Vertex('F');
 let v7 = new Vertex('G');
 
-test('When construct new Graph,',()=>{
+test('When construct new Graph,', () => {
     expect(graph.vertexSize).toBe(0);
     expect(graph.edgeSize).toBe(0);
 });
 
-test('graph.addVertex(vertex)',()=>{
+test('graph.addVertex(vertex)', () => {
     graph.addVertex(v1);
     graph.addVertex(v2);
     graph.addVertex(v3);
@@ -29,7 +29,7 @@ test('graph.addVertex(vertex)',()=>{
     expect(graph.edgeSize).toBe(0);
 });
 
-test('graph.addEdge(vs, ve, weight)',()=>{
+test('graph.addEdge(vs, ve, weight)', () => {
     graph.addEdge(v1, v2, 1);
     graph.addEdge(v1, v3, 2);
     graph.addEdge(v2, v3, 3);
@@ -42,46 +42,123 @@ test('graph.addEdge(vs, ve, weight)',()=>{
     graph.addEdge(v7, v1, 1);
     graph.addEdge(v7, v2, 2);
     // graph.addEdge(v6, v1, 2);
-    
+
     expect(graph.vertexSize).toBe(7);
     expect(graph.edgeSize).toBe(11);
 });
 
-test('graph.removeEdge(vs, ve)',()=>{
-    graph.removeEdge(v7,v1);
+test('graph.removeEdge(vs, ve)', () => {
+    graph.removeEdge(v7, v1);
 
     expect(graph.vertexSize).toBe(7);
     expect(graph.edgeSize).toBe(10);
 });
 
 test("Fail when try to remove non-existent edge", () => {
-    expect(()=>graph.removeEdge(v7,v1)).toThrow(Error);
+    expect(() => graph.removeEdge(v7, v1)).toThrow(Error);
 });
 
-test("graph.removeVertex(vertex), also remove edges that contains 'vertex'",()=>{
+test("graph.removeVertex(vertex), also remove edges that contains 'vertex'", () => {
     graph.removeVertex(v7);
 
     expect(graph.vertexSize).toBe(6);
     expect(graph.edgeSize).toBe(8);
 });
 
-test("graph.getDistance(vs, ve)",()=>{
-    expect(graph.getDistance(v1,v1)).toBe(0);
-    expect(graph.getDistance(v1,v2)).toBe(1);
-    expect(graph.getDistance(v3,v2)).toBe(3);
-    expect(graph.getDistance(v3,v4)).toBe(3);
-    expect(graph.getDistance(v3,v6)).toBe(3);
-    expect(graph.getDistance(v2,v5)).toBe(5);
-    expect(graph.getDistance(v5,v1)).toBe(Number.MAX_SAFE_INTEGER);
-    expect(graph.getDistance(v6,v1)).toBe(Number.MAX_SAFE_INTEGER);
+test("graph.getDistance(vs, ve) (don't have negative edge)", () => {
+    expect(graph.hasNegativeWeight()).toBe(false);
+
+    expect(graph.getDistance(v1, v1)).toBe(0);
+    expect(graph.getDistance(v1, v2)).toBe(1);
+    expect(graph.getDistance(v3, v2)).toBe(3);
+    expect(graph.getDistance(v3, v4)).toBe(3);
+    expect(graph.getDistance(v3, v6)).toBe(3);
+    expect(graph.getDistance(v2, v5)).toBe(5);
+    expect(graph.getDistance(v5, v1)).toBe(Number.MAX_SAFE_INTEGER);
+    expect(graph.getDistance(v6, v1)).toBe(Number.MAX_SAFE_INTEGER);
 });
 
-test("graph.getPath(vs, ve)",()=>{
-    expect(graph.getPath(v1,v1)).toEqual([v1]);
-    expect(graph.getPath(v3,v3)).toEqual([v3]);
-    expect(graph.getPath(v1,v2)).toEqual([v1,v2]);
-    expect(graph.getPath(v1,v4)).toEqual([v1,v3,v4]);
-    expect(graph.getPath(v1,v5)).toEqual([v1,v3,v5]);
-    expect(graph.getPath(v6,v1)).toEqual([]);
-    expect(graph.getPath(v5,v1)).toEqual([]);
+test("graph.getPath(vs, ve) (don't have negative edge)", () => {
+    expect(graph.hasNegativeWeight()).toBe(false);
+
+    expect(graph.getPath(v1, v1)).toEqual([v1]);
+    expect(graph.getPath(v3, v3)).toEqual([v3]);
+    expect(graph.getPath(v1, v2)).toEqual([v1, v2]);
+    expect(graph.getPath(v1, v4)).toEqual([v1, v3, v4]);
+    expect(graph.getPath(v1, v5)).toEqual([v1, v3, v5]);
+    expect(graph.getPath(v6, v1)).toEqual([]);
+    expect(graph.getPath(v5, v1)).toEqual([]);
+});
+
+test("graph.getDistance(vs, ve), using bellman-ford algorithm.", () => {
+    expect(graph.bellmanFord(v1, v1)[0]).toBe(0);
+    expect(graph.bellmanFord(v1, v2)[0]).toBe(1);
+    expect(graph.bellmanFord(v3, v2)[0]).toBe(3);
+    expect(graph.bellmanFord(v3, v4)[0]).toBe(3);
+    expect(graph.bellmanFord(v3, v6)[0]).toBe(3);
+    expect(graph.bellmanFord(v2, v5)[0]).toBe(5);
+    expect(graph.bellmanFord(v5, v1)[0]).toBe(Number.MAX_SAFE_INTEGER);
+    expect(graph.bellmanFord(v6, v1)[0]).toBe(Number.MAX_SAFE_INTEGER);
+});
+
+test("graph.getPath(vs, ve), using bellman-ford algorithm.", () => {
+    expect(graph.bellmanFord(v1, v1)[1]).toEqual([v1]);
+    expect(graph.bellmanFord(v3, v3)[1]).toEqual([v3]);
+    expect(graph.bellmanFord(v1, v2)[1]).toEqual([v1, v2]);
+    expect(graph.bellmanFord(v1, v4)[1]).toEqual([v1, v3, v4]);
+    expect(graph.bellmanFord(v1, v5)[1]).toEqual([v1, v3, v5]);
+    expect(graph.bellmanFord(v6, v1)[1]).toEqual([]);
+    expect(graph.bellmanFord(v5, v1)[1]).toEqual([]);
+});
+
+test("graph.updateEdgeWeight(vs, ve) to negative number.", () => {
+    graph.updateEdgeWeight(v1, v2, -2)
+
+    expect(graph.getWeight(v1, v2)).toBe(-2);
+});
+
+test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative weight.", () => {
+    expect(graph.hasNegativeWeight()).toBe(true);
+
+    expect(graph.bellmanFord(v1, v1)[0]).toBe(0);
+    expect(graph.bellmanFord(v1, v2)[0]).toBe(-2);
+    expect(graph.bellmanFord(v3, v2)[0]).toBe(0);
+    expect(graph.bellmanFord(v3, v4)[0]).toBe(3);
+    expect(graph.bellmanFord(v3, v6)[0]).toBe(3);
+    expect(graph.bellmanFord(v2, v5)[0]).toBe(5);
+    expect(graph.bellmanFord(v5, v1)[0]).toBe(Number.MAX_SAFE_INTEGER);
+    expect(graph.bellmanFord(v6, v1)[0]).toBe(Number.MAX_SAFE_INTEGER);
+});
+
+test("graph.getPath(vs, ve), using bellman-ford algorithm include negative weight.", () => {
+    expect(graph.hasNegativeWeight()).toBe(true);
+
+    expect(graph.bellmanFord(v1, v1)[1]).toEqual([v1]);
+    expect(graph.bellmanFord(v3, v3)[1]).toEqual([v3]);
+    expect(graph.bellmanFord(v3, v2)[1]).toEqual([v3, v1, v2]);
+    expect(graph.bellmanFord(v1, v2)[1]).toEqual([v1, v2]);
+    expect(graph.bellmanFord(v1, v4)[1]).toEqual([v1, v2, v3, v4]);
+    expect(graph.bellmanFord(v1, v5)[1]).toEqual([v1, v2, v3, v5]);
+    expect(graph.bellmanFord(v6, v1)[1]).toEqual([]);
+    expect(graph.bellmanFord(v5, v1)[1]).toEqual([]);
+});
+
+test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative weight.", () => {
+    graph.updateEdgeWeight(v1, v2, -6)
+
+    expect(graph.hasNegativeWeight()).toBe(true);
+
+    expect(() => graph.bellmanFord(v1, v1)).toThrow(Error);
+    expect(() => graph.bellmanFord(v1, v2)).toThrow(Error);
+    expect(() => graph.bellmanFord(v3, v2)).toThrow(Error);
+    expect(() => graph.bellmanFord(v3, v4)).toThrow(Error);
+});
+
+test("graph.getPath(vs, ve), using bellman-ford algorithm include 'negative cycle'.", () => {
+    expect(graph.hasNegativeWeight()).toBe(true);
+
+    expect(() => graph.bellmanFord(v1, v1)[1]).toThrow(Error);
+    expect(() => graph.bellmanFord(v3, v3)[1]).toThrow(Error);
+    expect(() => graph.bellmanFord(v3, v2)[1]).toThrow(Error);
+    expect(() => graph.bellmanFord(v1, v2)[1]).toThrow(Error);
 });
