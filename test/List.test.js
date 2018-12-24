@@ -100,3 +100,22 @@ test('List[] tail = null', function() {
     var list = new List();
     expect(list.tail()).toBe(null);
 })
+test('List[1,2,3,4,5] iterable test = 1,2,3,4,5', function() {
+    var list = new List();
+    list.addHead(5);
+    list.addHead(4);
+    list.addHead(3);
+    list.addHead(2);
+    list.addHead(1);
+    var expected = 1;
+    for(var e of list){
+        expect(e).toBe(expected);
+        expected++;
+    }
+})
+test('List[] iterable test = undefined', function() {
+    var list = new List();
+    for(var e of list){
+        expect(e).toBe(undefined);
+    }
+})
