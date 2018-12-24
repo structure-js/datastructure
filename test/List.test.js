@@ -119,3 +119,16 @@ test('List[] iterable test = undefined', function() {
         expect(e).toBe(undefined);
     }
 })
+test('List[1,2,3,4,5] list.at()', function() {
+    var list = new List();
+    list.addHead(5);
+    list.addHead(4);
+    list.addHead(3);
+    list.addHead(2);
+    list.addHead(1);
+    expect(list.at(0)).toBe(1);
+    expect(list.at(4)).toBe(5);
+    expect(list.at(3)).toBe(4);
+    expect(list.at(-1)).toBe(undefined);
+    expect(list.at(6)).toBe(undefined);
+})
