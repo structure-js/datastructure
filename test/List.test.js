@@ -129,6 +129,38 @@ test('List[1,2,3,4,5] list.at()', function() {
     expect(list.at(0)).toBe(1);
     expect(list.at(4)).toBe(5);
     expect(list.at(3)).toBe(4);
-    expect(list.at(-1)).toBe(undefined);
-    expect(list.at(6)).toBe(undefined);
+    expect(list.at(-1)).toBe(5);
+    expect(list.at(-5)).toBe(1);
+    expect(function(){list.at(-6)}).toThrow();
+    expect(function(){list.at(6)}).toThrow();
+})
+test('List[1,3,4,5] list.insert(1,2) = [1,2,3,4,5]', function() {
+    var list = new List();
+    list.addHead(5);
+    list.addHead(4);
+    list.addHead(3);
+    list.addHead(1);
+    expect(list.insert(1,2)).toBe(true);
+    expect(list.size()).toBe(5);
+    var expected = 1;
+    for(var e of list){
+        expect(e).toBe(expected);
+        expected++;
+    }
+})
+test('List[] list.insert()', function() {
+    var list = new List();
+    expect(list.insert(0,2)).toBe(true);
+    expect(list.size()).toBe(1);
+    expect(list.insert(0,1)).toBe(true);
+    expect(list.size()).toBe(2);
+    expect(list.insert(1,3)).toBe(true);
+    expect(list.size()).toBe(3);
+    expect(list.insert(-3,0)).toBe(true);
+    expect(list.size()).toBe(4);
+    var expected = 0;
+    for(var e of list){
+        expect(e).toBe(expected);
+        expected++;
+    }
 })
