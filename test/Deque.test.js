@@ -1,58 +1,64 @@
 var Deque = require('../lib/Deque');
 
-test('Deque[] add head 1 = [1]', function() {
+test('Deque[] push front 1 = Deque[1]', function() {
     var dq = new Deque();
     dq.pushFront(1);
-    expect(dq._list.head()).toBe(1);
+    expect(dq._first._value).toBe(1);
 })
-test('Deque[] add tail 2 = [2]', function() {
+test('Deque[] push back 2 = Deque[2]', function() {
     var dq = new Deque();
     dq.pushBack(2);
-    expect(dq._list.tail()).toBe(2);
+    expect(dq._last._value).toBe(2);
 })
-test('Deque[3] add head 1 = [1,3]', function() {
+test('Deque[3] push front 1 = Deque[1,3]', function() {
     var dq = new Deque();
     dq.pushFront(3);
     dq.pushFront(1);
-    expect(dq._list.head()).toBe(1);
-    expect(dq._list.tail()).toBe(3);
+    expect(dq._first._value).toBe(1);
+    expect(dq._last._value).toBe(3);
 })
-test('Deque[3] add tail 2 = [3,2]', function() {
+test('Deque[3] push back 2 = Deque[3,2]', function() {
     var dq = new Deque();
     dq.pushFront(3);
     dq.pushBack(2);
-    expect(dq._list.head()).toBe(3);
-    expect(dq._list.tail()).toBe(2);
+    expect(dq._first._value).toBe(3);
+    expect(dq._last._value).toBe(2);
 })
-test('Deque[3] remove head = []', function() {
+test('Deque[3] pop front = Deque[]', function() {
     var dq = new Deque();
     dq.pushFront(3);
     expect(dq.popFront()).toBe(3);
-    expect(dq._list.isEmpty()).toBe(true);
-    expect(dq._list.isEmpty()).toBe(true);
+    expect(dq._first).toBe(null);
+    expect(dq._last).toBe(null);
+    expect(dq._size).toBe(0);
+    expect(function(){dq.popFront()}).toThrow();
 })
-test('Deque[3] remove tail = []', function() {
+test('Deque[3] pop back = Deque[]', function() {
     var dq = new Deque();
     dq.pushFront(3);
     expect(dq.popBack()).toBe(3);
-    expect(dq._list.isEmpty()).toBe(true);
-    expect(dq._list.isEmpty()).toBe(true);
+    expect(dq._first).toBe(null);
+    expect(dq._last).toBe(null);
+    expect(dq._size).toBe(0);
+    expect(function(){dq.popBack()}).toThrow();
 })
-test('Deque[3,4] remove head = [4]', function() {
+test('Deque[3,4] remove head = Deque[4]', function() {
     var dq = new Deque();
     dq.pushFront(3);
     dq.pushBack(4);
     expect(dq.popFront()).toBe(3);
-    expect(dq._list.head()).toBe(4);
-    expect(dq._list.tail()).toBe(4);
+    expect(dq._first._value).toBe(4);
+    expect(dq._last._value).toBe(4);
+    expect(dq._size).toBe(1);
 })
-test('Deque[3,4] remove tail = [3]', function() {
+test('Deque[3,4] remove tail = Deque[3]', function() {
     var dq = new Deque();
     dq.pushFront(4);
     dq.pushFront(3);
     expect(dq.popBack()).toBe(4);
-    expect(dq._list.head()).toBe(3);
-    expect(dq._list.tail()).toBe(3);
+    expect(dq._first._value).toBe(3);
+    expect(dq._last._value).toBe(3);
+    expect(dq._size).toBe(1);
 })
 test('Deque[5] front = 5', function() {
     var dq = new Deque();

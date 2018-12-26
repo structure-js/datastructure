@@ -1,29 +1,34 @@
 var Queue = require('../lib/Queue');
 
-test('Queue[] push 1 = [1]', function() {
+test('Queue[] push 1 = Queue[1]', function() {
     var q = new Queue();
     q.push(1);
-    expect(q._list.head()).toBe(1);
+    expect(q._first._value).toBe(1);
+    expect(q._size).toBe(1);
 })
-test('Queue[3] push 1 = [3,1]', function() {
+test('Queue[3] push 1 = Queue[3,1]', function() {
     var q = new Queue();
     q.push(3);
     q.push(1);
-    expect(q._list.head()).toBe(3);
-    expect(q._list.tail()).toBe(1);
+    expect(q._first._value).toBe(3);
+    expect(q._last._value).toBe(1);
+    expect(q._size).toBe(2);
 })
-test('Queue[3] pop = []', function() {
+test('Queue[3] pop = Queue[]', function() {
     var q = new Queue();
     q.push(3);
     expect(q.pop()).toBe(3);
-    expect(q._list.isEmpty()).toBe(true);
+    expect(q._first).toBe(null);
+    expect(q._last).toBe(null);
+    expect(q._size).toBe(0);
+    expect(function(){q.pop()}).toThrow();
 })
-test('Queue[3,4] pop = [4]', function() {
+test('Queue[3,4] pop = Queue[4]', function() {
     var q = new Queue();
     q.push(3);
     q.push(4);
     expect(q.pop()).toBe(3);
-    expect(q._list.head()).toBe(4);
+    expect(q._first._value).toBe(4);
 })
 test('Queue[5] front = 5', function() {
     var q = new Queue();

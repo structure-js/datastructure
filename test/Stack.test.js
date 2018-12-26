@@ -1,29 +1,33 @@
 var Stack = require('../lib/Stack');
 
-test('Stack[] push 1 = [1]', function() {
+test('Stack[] push 1 = Stack[1]', function() {
     var s = new Stack();
     s.push(1);
-    expect(s._list.head()).toBe(1);
+    expect(s._top._value).toBe(1);
+    expect(s._size).toBe(1);
 })
-test('Stack[3] push 1 = [3,1]', function() {
+test('Stack[3] push 1 = Stack[3,1]', function() {
     var s = new Stack();
     s.push(3);
     s.push(1);
-    expect(s._list.head()).toBe(3);
-    expect(s._list.tail()).toBe(1);
+    expect(s._top._value).toBe(1);
+    expect(s._size).toBe(2);
 })
-test('Stack[3] pop = []', function() {
+test('Stack[3] pop = Stack[]', function() {
     var s = new Stack();
     s.push(3);
     expect(s.pop()).toBe(3);
-    expect(s._list.isEmpty()).toBe(true);
+    expect(s._top).toBe(null);
+    expect(s._size).toBe(0);
+    expect(function(){s.pop()}).toThrow();
 })
-test('Stack[3,4] pop = [3]', function() {
+test('Stack[3,4] pop = Stack[3]', function() {
     var s = new Stack();
     s.push(3);
     s.push(4);
     expect(s.pop()).toBe(4);
-    expect(s._list.head()).toBe(3);
+    expect(s._top._value).toBe(3);
+    expect(s._size).toBe(1);
 })
 test('Stack[5] top = 5', function() {
     var s = new Stack();
@@ -60,5 +64,7 @@ test('Stack[3,4,5,6,7] clear = []', function() {
     s.push(6);
     s.push(7);
     s.clear();
+    expect(s._top).toBe(null);
+    expect(s._size).toBe(0);
     expect(s.isEmpty()).toBe(true);
 })
