@@ -1,4 +1,4 @@
-let Graph = require('../lib/Graph.js');
+let Graph = require('../index').Graph;
 let Vertex = Graph.Vertex;
 
 let graph = new Graph();

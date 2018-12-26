@@ -1,4 +1,4 @@
-var List = require('../lib/List');
+var List = require('../index').List;
 
 test('List[] push front 1 = List[1]', function() {
     var list = new List();

@@ -1,4 +1,4 @@
-var MaxHeap = require('../lib/MaxHeap');
+var MaxHeap = require('../index').MaxHeap;
 
 test('MaxHeap push 1 = [0,1]', function(){
     var mh = new MaxHeap();

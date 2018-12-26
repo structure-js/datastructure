@@ -1,4 +1,4 @@
-var Tree = require('../lib/Tree');
+var Tree = require('../index').Tree;
 
 test('Tree init', function() {
     let tree = new Tree();

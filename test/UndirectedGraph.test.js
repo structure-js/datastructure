@@ -1,4 +1,4 @@
-let UndirectedGraph = require('../lib/UndirectedGraph.js');
+let UndirectedGraph = require('../index').UndirectedGraph;
 let Vertex = UndirectedGraph.Vertex;
 
 let graph = new UndirectedGraph();

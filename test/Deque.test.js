@@ -1,4 +1,4 @@
-var Deque = require('../lib/Deque');
+var Deque = require('../index').Deque;
 
 test('Deque[] push front 1 = Deque[1]', function() {
     var dq = new Deque();

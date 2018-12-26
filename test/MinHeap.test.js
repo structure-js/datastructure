@@ -1,4 +1,4 @@
-var MinHeap = require('../lib/MinHeap');
+var MinHeap = require('../index').MinHeap;
 
 test('MinHeap push 1 = [0,1]', function(){
     var mh = new MinHeap();

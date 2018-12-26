@@ -1,4 +1,4 @@
-var Stack = require('../lib/Stack');
+var Stack = require('../index').Stack
 
 test('Stack[] push 1 = Stack[1]', function() {
     var s = new Stack();

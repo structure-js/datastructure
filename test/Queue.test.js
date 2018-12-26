@@ -1,4 +1,4 @@
-var Queue = require('../lib/Queue');
+var Queue = require('../index').Queue;
 
 test('Queue[] push 1 = Queue[1]', function() {
     var q = new Queue();
