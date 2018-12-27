@@ -2,10 +2,13 @@
 > datastructure is a library of data structures available in JavaScript.
 
 ### Overview
-* `linked-list`
+* `linked list`
 * `stack`
 * `queue`
 * `dequeue`
+* `graph`
+* `tree`
+* `binary search tree`
 
 ### Repo Structure
 * `lib/` - data structure library

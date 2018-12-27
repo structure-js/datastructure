@@ -3,27 +3,27 @@ var Tree = require('../index').Tree;
 test('Tree init', function() {
     let tree = new Tree();
 
-    expect(tree.getRootNode()).toBe(null);
+    expect(tree.root).toBe(null);
     expect(tree.nodeSize).toBe(0);
 });
 
-test('addNodeTo test', function(){
+test('insertTo test', function(){
     let tree = new Tree();
 
-    tree.setRootNode(2);
-    tree.addNodeTo(2,3);
-    tree.addNodeTo(2,4);
-    tree.addNodeTo(2,5);
-    tree.addNodeTo(5,1);
+    tree.setRoot(2);
+    tree.insertTo(2,3);
+    tree.insertTo(2,4);
+    tree.insertTo(2,5);
+    tree.insertTo(5,1);
 
-    expect(()=>tree.addNodeTo(5,2)).toThrow(Error);
+    expect(()=>tree.insertTo(5,2)).toThrow(Error);
 
-    expect(tree.has(1)).toBe(true);
-    expect(tree.has(2)).toBe(true);
-    expect(tree.has(3)).toBe(true);
-    expect(tree.has(4)).toBe(true);
-    expect(tree.has(5)).toBe(true);
-    expect(tree.has(6)).toBe(false);
+    expect(tree.contains(1)).toBe(true);
+    expect(tree.contains(2)).toBe(true);
+    expect(tree.contains(3)).toBe(true);
+    expect(tree.contains(4)).toBe(true);
+    expect(tree.contains(5)).toBe(true);
+    expect(tree.contains(6)).toBe(false);
 
     expect(tree.nodeSize).toBe(5);
 });
@@ -32,12 +32,12 @@ test('DFS', function(){
     let tree = new Tree();
     let Queue = require("../lib/Queue");
 
-    tree.setRootNode(2);
-    tree.addNodeTo(2,3);
-    tree.addNodeTo(3,6);
-    tree.addNodeTo(2,4);
-    tree.addNodeTo(2,5);
-    tree.addNodeTo(5,1);
+    tree.setRoot(2);
+    tree.insertTo(2,3);
+    tree.insertTo(3,6);
+    tree.insertTo(2,4);
+    tree.insertTo(2,5);
+    tree.insertTo(5,1);
 
     testQueue = new Queue();
     
