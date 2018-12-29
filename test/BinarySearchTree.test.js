@@ -65,6 +65,37 @@ test('insertTo test', function(){
     // 	    20b
 });
 
-test('DFS', function(){
+test('Insert custom object and compare', function(){
+    let CustomObj = function(key, value){
+        this.key = key;
+        this.value = value;
+    }
+
+    let tree = new BinarySearchTree();
+
+    tree._compare = function(o1, o2){
+        return o1.key - o2.key;
+    };
+
+    tree.insert(new CustomObj(2, "github.com/HeechanYang"));
+    tree.insert(new CustomObj(3, "github.com/structure-js/datastructure"));
+    tree.insert(new CustomObj(1, "www.naver.com"));
+    tree.insert(new CustomObj(4, "www.google.com"));
+    tree.insert(new CustomObj(5, "www.daum.net"));
+    tree.insert(new CustomObj(8, "www.11st.com"));
+    tree.insert(new CustomObj(9, "www.wikipedia.com"));
+    tree.insert(new CustomObj(10, "heechanyang.github.io"));
+    tree.insert(new CustomObj(11, "www.firstmall.kr"));
+    tree.insert(new CustomObj(20, "ko.wix.com"));
+    tree.insert(new CustomObj(15, "www.sixshop.com/"));
+    tree.insert(new CustomObj(17, "www.sabangnet.co.kr/"));
+    tree.insert(new CustomObj(16, "www.compuzone.co.kr"));
+    tree.insert(new CustomObj(12, "brunch.co.kr"));
+    tree.insert(new CustomObj(13, "jaewook.net"));
     
+    expect(tree.root.value.value).toBe("heechanyang.github.io");
+    expect(tree.getMax().key).toBe(20);
+    expect(tree.getMax().value).toBe("ko.wix.com");
+    expect(tree.getMin().key).toBe(1);
+    expect(tree.getMin().value).toBe("www.naver.com");
 });

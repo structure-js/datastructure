@@ -8,33 +8,38 @@ test('Tree init', function() {
     expect(tree.height).toBe(0);
 });
 
-test('insertTo test', function(){
+test('Insert custom object and compare', function(){
+    let CustomObj = function(key, value){
+        this.key = key;
+        this.value = value;
+    }
+
     let tree = new BTree();
 
-    tree.insert(1, "github.com/HeechanYang");
-    tree.insert(2, "github.com/structure-js/datastructure");
-    tree.insert(3, "www.naver.com");
-    tree.insert(4, "www.google.com");
-    tree.insert(5, "www.daum.net");
-    tree.insert(6, "www.11st.com");
-    tree.insert(7, "www.wikipedia.com");
-    tree.insert(8, "heechanyang.github.io");
-    tree.insert(9, "www.firstmall.kr");
-    tree.insert(10, "ko.wix.com");
-    tree.insert(11, "www.sixshop.com/");
-    tree.insert(12, "www.sabangnet.co.kr/");
-    tree.insert(13, "www.compuzone.co.kr");
-    tree.insert(14, "brunch.co.kr");
-    tree.insert(15, "jaewook.net");
-    tree.insert(16, "zmfmd.tistory.com");
-    tree.insert(17, "www.zdnet.co.kr");
-    tree.insert(18, "itfind.or.kr");
-    tree.insert(19, "rpgxp7017.tistory.com");
+    tree.compare = function(o1, o2){
+        return o1.key - o2.key;
+    };
 
-    expect(tree.size).toBe(19);
-    expect(tree.height).toBe(2);
+    tree.insert(new CustomObj(2, "github.com/HeechanYang"));
+    tree.insert(new CustomObj(3, "github.com/structure-js/datastructure"));
+    tree.insert(new CustomObj(1, "www.naver.com"));
+    tree.insert(new CustomObj(4, "www.google.com"));
+    tree.insert(new CustomObj(5, "www.daum.net"));
+    tree.insert(new CustomObj(8, "www.11st.com"));
+    tree.insert(new CustomObj(9, "www.wikipedia.com"));
+    tree.insert(new CustomObj(10, "heechanyang.github.io"));
+    tree.insert(new CustomObj(11, "www.firstmall.kr"));
+    tree.insert(new CustomObj(20, "ko.wix.com"));
+    tree.insert(new CustomObj(15, "www.sixshop.com/"));
+    tree.insert(new CustomObj(17, "www.sabangnet.co.kr/"));
+    tree.insert(new CustomObj(16, "www.compuzone.co.kr"));
+    tree.insert(new CustomObj(12, "brunch.co.kr"));
+    tree.insert(new CustomObj(13, "jaewook.net"));
+
+    expect(tree.size).toBe(15);
+    expect(tree.height).toBe(1);
     
-    expect(tree.get(3)).toBe("www.naver.com");
+    expect(tree.get(3).value).toBe("github.com/structure-js/datastructure");
 
     // tree._bfsVisualization();
 });
