@@ -164,7 +164,6 @@ test('List[1,3,4,5] list.insert(1,2) = [1,2,3,4,5]', function() {
     expect(list.size()).toBe(5);
     var expected = 1;
     for(var e of list){
-        // console.log(e);
         expect(e).toBe(expected);
         expected++;
     }

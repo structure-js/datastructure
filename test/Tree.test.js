@@ -51,8 +51,7 @@ test('DFS', function(){
     expect(testQueue.pop()).toBe(tree.getNode(5));
     expect(testQueue.pop()).toBe(tree.getNode(2));
     
-    for(let node of tree.dfsIteratorInOrder()){
-        // console.log(node.value);
+    for(let node of tree.dfsIteratorPreOrder()){
         testQueue.push(node);
     }
     expect(testQueue.pop()).toBe(tree.getNode(2));

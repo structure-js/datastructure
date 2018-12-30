@@ -7,7 +7,7 @@ test('When construct new Graph,',()=>{
     expect(graph.edgeSize).toBe(0);
 });
 
-test('graph.addVertex(vertex)',()=>{
+test('graph.addVertex(value)',()=>{
     graph.addVertex('A');
     graph.addVertex('B');
     graph.addVertex('C');
@@ -21,7 +21,7 @@ test('graph.addVertex(vertex)',()=>{
     expect(graph.edgeSize).toBe(0);
 });
 
-test('graph.addEdge(vs, ve, weight)',()=>{
+test('graph.addEdge(v1, v2, weight)',()=>{
     graph.addEdge('A', 'B', 1);
     graph.addEdge('A', 'C', 2);
     graph.addEdge('B', 'C', 3);
@@ -39,7 +39,7 @@ test('graph.addEdge(vs, ve, weight)',()=>{
     expect(graph.edgeSize).toBe(11);
 });
 
-test('graph.removeEdge(vs, ve)',()=>{
+test('graph.removeEdge(v1, v2)',()=>{
     graph.removeEdge('G','A');
 
     expect(graph.vertexSize).toBe(8);
@@ -50,14 +50,14 @@ test("Fail when try to remove non-existent edge", () => {
     expect(()=>graph.removeEdge('G','A')).toThrow(Error);
 });
 
-test("graph.removeVertex(vertex), also remove edges that contains 'vertex'",()=>{
+test("graph.removeVertex(value), also remove edges that contains 'vertex'",()=>{
     graph.removeVertex('G');
 
     expect(graph.vertexSize).toBe(7);
     expect(graph.edgeSize).toBe(8);
 });
 
-test("graph.getDistance(vs, ve)",()=>{
+test("graph.getDistance(v1, v2)",()=>{
     expect(graph.getDistance('A','A')).toBe(0);
     expect(graph.getDistance('D','D')).toBe(0);
     expect(graph.getDistance('A','B')).toBe(1);

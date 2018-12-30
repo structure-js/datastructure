@@ -57,7 +57,7 @@ test("graph.removeVertex(vertex), also remove edges that contains 'vertex'", () 
 });
 
 test("graph.getDistance(vs, ve) (don't have negative edge)", () => {
-    expect(graph.hasNegativeWeight()).toBe(false);
+    expect(graph._hasNegativeWeight()).toBe(false);
 
     expect(graph.getDistance('A', 'A')).toBe(0);
     expect(graph.getDistance('A', 'B')).toBe(1);
@@ -70,7 +70,7 @@ test("graph.getDistance(vs, ve) (don't have negative edge)", () => {
 });
 
 test("graph.getPath(vs, ve) (don't have negative edge)", () => {
-    expect(graph.hasNegativeWeight()).toBe(false);
+    expect(graph._hasNegativeWeight()).toBe(false);
 
     expect(graph.getPath('A', 'A')).toEqual(['A']);
     expect(graph.getPath('C', 'C')).toEqual(['C']);
@@ -106,10 +106,12 @@ test("graph.updateEdgeWeight(vs, ve) to negative number.", () => {
     graph.updateEdgeWeight('A', 'B', -2)
 
     expect(graph.getWeight('A', 'B')).toBe(-2);
+
+    expect(graph._hasNegativeWeight()).toBe(true);
 });
 
 test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative weight.", () => {
-    expect(graph.hasNegativeWeight()).toBe(true);
+    expect(graph._hasNegativeWeight()).toBe(true);
 
     expect(graph.bellmanFord('A', 'A')[0]).toBe(0);
     expect(graph.bellmanFord('A', 'B')[0]).toBe(-2);
@@ -122,7 +124,7 @@ test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative w
 });
 
 test("graph.getPath(vs, ve), using bellman-ford algorithm include negative weight.", () => {
-    expect(graph.hasNegativeWeight()).toBe(true);
+    expect(graph._hasNegativeWeight()).toBe(true);
 
     expect(graph.bellmanFord('A', 'A')[1]).toEqual(['A']);
     expect(graph.bellmanFord('C', 'C')[1]).toEqual(['C']);
@@ -137,7 +139,7 @@ test("graph.getPath(vs, ve), using bellman-ford algorithm include negative weigh
 test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative weight.", () => {
     graph.updateEdgeWeight('A', 'B', -6)
 
-    expect(graph.hasNegativeWeight()).toBe(true);
+    expect(graph._hasNegativeWeight()).toBe(true);
 
     expect(() => graph.bellmanFord('A', 'A')).toThrow(Error);
     expect(() => graph.bellmanFord('A', 'B')).toThrow(Error);
@@ -146,7 +148,7 @@ test("graph.getDistance(vs, ve), using bellman-ford algorithm include negative w
 });
 
 test("graph.getPath(vs, ve), using bellman-ford algorithm include 'negative cycle'.", () => {
-    expect(graph.hasNegativeWeight()).toBe(true);
+    expect(graph._hasNegativeWeight()).toBe(true);
 
     expect(() => graph.bellmanFord('A', 'A')[1]).toThrow(Error);
     expect(() => graph.bellmanFord('C', 'C')[1]).toThrow(Error);
