@@ -1,6 +1,9 @@
 # datastructure
 > datastructure is a library of data structures available in JavaScript.
 
+### Demo
+![demo](https://github.com/structure-js/images/blob/master/visualization.gif)
+
 ### Overview
 * `linked list`
 * `stack`
