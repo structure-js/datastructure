@@ -4,7 +4,7 @@ test('Tree init', function() {
     let tree = new Tree();
 
     expect(tree.root).toBe(null);
-    expect(tree.nodeSize).toBe(0);
+    expect(tree.size).toBe(0);
 });
 
 test('insertTo test', function(){
@@ -25,7 +25,7 @@ test('insertTo test', function(){
     expect(tree.contains(5)).toBe(true);
     expect(tree.contains(6)).toBe(false);
 
-    expect(tree.nodeSize).toBe(5);
+    expect(tree.size).toBe(5);
 });
 
 test('DFS', function(){
