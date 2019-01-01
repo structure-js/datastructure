@@ -2,16 +2,22 @@
 > datastructure is a library of data structures available in JavaScript.
 
 ### Demo
+
+#### [Visualization demo site](http://structure-js-visualization.s3-website.ap-northeast-2.amazonaws.com/)
 ![demo](https://github.com/structure-js/images/blob/master/visualization.gif)
 
 ### Overview
-* `linked list`
-* `stack`
-* `queue`
-* `dequeue`
-* `graph`
-* `tree`
-* `binary search tree`
+
+* [Linked list](https://github.com/structure-js/datastructure/wiki/List)
+* [Stack](https://github.com/structure-js/datastructure/wiki/Stack)
+* [Queue](https://github.com/structure-js/datastructure/wiki/Queue)
+* [Deque](https://github.com/structure-js/datastructure/wiki/Deque)
+* [Heap](https://github.com/structure-js/datastructure/wiki/Heap)
+* [PriorityQueue](https://github.com/structure-js/datastructure/wiki/PriorityQueue)
+* [Graph](https://github.com/structure-js/datastructure/wiki/Graph)
+* [Tree](https://github.com/structure-js/datastructure/wiki/Tree)
+* [BinarySearchTree](https://github.com/structure-js/datastructure/wiki/BinarySearchTree)
+* [Btree](https://github.com/structure-js/datastructure/wiki/BTree)
 
 ### Repo Structure
 * `lib/` - data structure library
@@ -25,6 +31,19 @@
 #### Installation
 ```
 npm i @structure-js/datastructure
+```
+
+#### How to use
+```
+const List = require('@structure-js/datastructure').List;
+const Graph = require('@structure-js/datastructure').Graph;
+const BST = require('@structure-js/datastructure').BinarySearchTree;
+
+let list = new List();
+let graph = new Graph();
+let bst = new BST();
+
+...
 ```
 
 ### Contributors
