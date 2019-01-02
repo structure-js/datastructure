@@ -30,8 +30,8 @@
 * `ECMAScript2015 / ECMAScript6 +`
 
 #### Installation
-```
 Current version 1.1.1
+```
 npm i @structure-js/datastructure
 ```
 
