@@ -9,4 +9,6 @@ module.exports = {
     Graph: require('./lib/Graph'),
     UndirectedGraph: require('./lib/UndirectedGraph'),
     Tree: require('./lib/Tree'),
+    BinarySearchTree: require('./lib/BinarySearchTree'),
+    BTree: require('./lib/BTree')
 }
