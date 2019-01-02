@@ -1,5 +1,5 @@
-# datastructure
-> datastructure is a library of data structures available in JavaScript.
+# @structure-js/datastructure
+> Datastructure is a library of data structures available in JavaScript.
 
 ### Demo
 
@@ -27,23 +27,46 @@
 ### Installation and Settings
 #### Build requirements
 * `Node.js 6.x+`
+* `ECMAScript2015 / ECMAScript6 +`
 
 #### Installation
 ```
+Current version 1.1.1
 npm i @structure-js/datastructure
 ```
 
 #### How to use
 ```
 const List = require('@structure-js/datastructure').List;
+const Stack = require('@structure-js/datastructure').Stack;
+const Queue = require('@structure-js/datastructure').Queue;
+const Deque = require('@structure-js/datastructure').Deque;
+const MaxHeap = require('@structure-js/datastructure').MaxHeap;
+const MinHeap = require('@structure-js/datastructure').MinHeap;
+const PriorityQueue = require('@structure-js/datastructure').PriorityQueue;
 const Graph = require('@structure-js/datastructure').Graph;
-const BST = require('@structure-js/datastructure').BinarySearchTree;
+const UndirectedGraph = require('@structure-js/datastructure').UndirectedGraph
+const Tree = require('@structure-js/datastructure').Tree;
+const BinarySearchTree = require('@structure-js/datastructure').BinarySearchTree;
+const BTree = require('@structure-js/datastructure').BTree;
 
 let list = new List();
+let stack = new Stack();
+let queue = new Queue();
+let deque = new Deque();
+let maxHeap = new MaxHeap();
+let minHeap = new MinHeap();
+let pq = new PriorityQueue(compare);
 let graph = new Graph();
-let bst = new BST();
+let tree = new Tree();
+let bst = new BinarySearchTree();
+let btree = new BTree();
 
-...
+// Other uses
+// const structurejs = require('@structure-js/datastructure');
+// let [Data Structure] = new structurejs.[Data Structure]();
+
+// See the wiki for more details.
 ```
 
 ### Contributors
